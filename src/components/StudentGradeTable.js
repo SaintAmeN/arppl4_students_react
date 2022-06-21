@@ -48,10 +48,25 @@ const rekordy = [
 const StudentGradeTable = () => {
     const [students, setStudents] = useState(rekordy);
 
+    const deleteStudent = (studentId) => {
+        console.log('Usuwamy studenta: ' + studentId)
+
+        for (let i = 0; i < students.length; i++) {
+
+            if(students[i].id === studentId){
+                students.splice(i, 1);
+            }
+        }
+
+        // kopiowanie elementów tablicy do nowej tablicy
+        // ustawienie nowej tablicy jako aktualnej (aby react odświeżył ekran)
+        setStudents([...students]);
+    }
+
     return (
         <div className={classes.StudentGradeTable}>
             <Grid container className={classes.NaglowekTabeli}>
-                <Grid item xs={1}>Lp.</Grid>
+                <Grid item xs={1}>Id</Grid>
                 <Grid item xs={1}>Ocena</Grid>
                 <Grid item xs={2}>Przedmiot</Grid>
                 <Grid item xs={3}>Opis</Grid>
@@ -72,7 +87,15 @@ const StudentGradeTable = () => {
                                 <Grid item xs={3}>{student.opis}</Grid>
                                 <Grid item xs={2}>{student.student}</Grid>
                                 <Grid item xs={2}>{student.nauczyciel}</Grid>
-                                <Grid item xs={1}/>
+                                <Grid item xs={1}>
+                                    {/*OnClick
+                                        -   wywołaj funkcję (dlatego napisałem ()=>{})
+                                        -   wewnątrz funkcji ({} - wewnątrz klamer) wywołaj funkcję deleteStudent
+                                    */}
+                                    <button onClick={()=>{
+                                        deleteStudent(student.id)
+                                    }}>Delete</button>
+                                </Grid>
                             </Grid>
                         )
                     })

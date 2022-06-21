@@ -1,4 +1,5 @@
 import classes from "./NavigationHeader.module.css";
+import {Link} from "react-router-dom";
 
 const NavigationHeader = () => {
     return (
@@ -13,6 +14,12 @@ const NavigationHeader = () => {
                     <div className={classes.TextPrawa}>
                         <p>ARPPL4</p>
                     </div>
+                    <p>
+                        <Link to={"/"}>Home</Link>
+                    </p>
+                    <p>
+                        <Link to={"/list"}>List</Link>
+                    </p>
                 </div>
             </div>
         </header>
